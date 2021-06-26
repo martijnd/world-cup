@@ -2,12 +2,12 @@
 
 ## Data
 
-### Users
+### User
 id
 name
 email
 password
-predictions: N-N Game
+predictions: Prediction[]
 
 ### Prediction
 id
@@ -19,8 +19,13 @@ away_goals
 ### Team
 id
 country_name
+group_id: Group
 
 games: Game[]
+
+### Group
+name
+teams: Team[]
 
 ### Game
 id
@@ -28,7 +33,6 @@ home_team
 away_team
 home_goals
 away_goals
-datetime
-location
+played_at
 
 predictions: Prediction[]
