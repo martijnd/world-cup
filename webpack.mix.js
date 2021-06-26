@@ -12,11 +12,16 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .vue({runtimeOnly: true})
-    .alias({ '@': 'resources/js' })
+    .vue()
     .postCss('resources/css/app.css', 'public/css', [
-        require("tailwindcss"),
-    ])
-    .version()
+        require('postcss-import'),
+        require('tailwindcss'),
+        require('autoprefixer'),
+    ]).version()
     .sourceMaps()
+    .webpackConfig(require('./webpack.config'))
     .browserSync('localhost');
+
+if (mix.inProduction()) {
+    mix.version();
+}
