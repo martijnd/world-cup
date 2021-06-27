@@ -22,6 +22,11 @@ class Game extends Model
         return $this->hasMany(Prediction::class);
     }
 
+    public function prediction()
+    {
+        return $this->hasMany(Prediction::class)->where('user_id', auth()->id());
+    }
+
     public function homeTeam()
     {
         return $this->belongsTo(Team::class, 'home_team_id');

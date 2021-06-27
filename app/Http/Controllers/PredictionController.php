@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Prediction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class PredictionController extends Controller
 {
@@ -69,7 +70,15 @@ class PredictionController extends Controller
      */
     public function update(Request $request, Prediction $prediction)
     {
-        //
+        Prediction::updateOrCreate([
+            'user_id' => auth()->id(),
+            'game_id' => $request->input('game_id')
+        ], [
+            'home_goals' => $request->input('home_goals'),
+            'away_goals' => $request->input('away_goals')
+        ]);
+
+        return Redirect::route('dashboard');
     }
 
     /**

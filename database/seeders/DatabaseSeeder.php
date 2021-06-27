@@ -28,6 +28,6 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('password')
             ]);
 
-        $this->call(PredictionSeeder::class);
+        // $this->call(PredictionSeeder::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use App\Models\Prediction;
 use App\Models\Team;
 use Illuminate\Http\Request;
@@ -11,14 +12,16 @@ class DashboardController extends Controller
     public function index()
     {
         $teams = Team::with('group')->get();
-        $predictions = Prediction::query()
-            ->with(['game.homeTeam', 'game.awayTeam'])
-            ->whereUserId(auth()->id())
-            ->get();
+
+        $games = Game::query()
+            ->with('predictions', function ($query) {
+                $query->whereUserId(auth()->id());
+            })
+            ->with(['homeTeam', 'awayTeam'])->get();
 
         return inertia('Dashboard', [
             'teams' => $teams,
-            'predictions' => $predictions
+            'games' => $games
         ]);
     }
 }

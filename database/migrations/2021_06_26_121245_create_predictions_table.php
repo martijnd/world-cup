@@ -17,8 +17,8 @@ class CreatePredictionsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('game_id')->constrained();
-            $table->integer('home_goals');
-            $table->integer('away_goals');
+            $table->integer('home_goals')->nullable();
+            $table->integer('away_goals')->nullable();
             $table->timestamps();
             $table->unique(['user_id', 'game_id']);
         });

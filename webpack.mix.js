@@ -12,7 +12,7 @@ const mix = require("laravel-mix");
  */
 
 mix.js("resources/js/app.js", "public/js")
-    .vue()
+    .vue({ version: 3 })
     .postCss("resources/css/app.css", "public/css", [
         require("postcss-import"),
         require("tailwindcss"),
@@ -21,7 +21,7 @@ mix.js("resources/js/app.js", "public/js")
     .version()
     .sourceMaps()
     .webpackConfig(require("./webpack.config"))
-    .browserSync("localhost");
+    .browserSync("localhost", {open: false});
 
 if (mix.inProduction()) {
     mix.version();

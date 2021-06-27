@@ -1,21 +1,23 @@
 <template>
-  <div>
-    <ul>
-      <li v-for="prediction in predictions" :key="prediction.id">
-        {{ prediction.game.home_team.country_name }} vs {{ prediction.game.away_team.country_name }}
-        <h3>Prediction:</h3>
-        <div>{{ prediction.home_goals }} : {{ prediction.away_goals }}</div>
-      </li>
-    </ul>
+  <div class="grid grid-cols-3">
+    <div v-for="game in games" :key="game.id">
+      <prediction :game="game" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
+import { Inertia } from "@inertiajs/inertia";
+import { useForm } from "@inertiajs/inertia-vue3";
 import { defineComponent } from "vue";
+import Prediction from "@/Components/Prediction.vue";
 
 export default defineComponent({
-  props: ["predictions"],
-  setup() {},
+  props: ["games"],
+  components: {
+    Prediction,
+  },
+  setup(props) {},
 });
 </script>
 
