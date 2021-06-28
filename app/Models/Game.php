@@ -17,6 +17,8 @@ class Game extends Model
         'played_at',
     ];
 
+    protected $dates = ['played_at'];
+
     public function predictions()
     {
         return $this->hasMany(Prediction::class);
