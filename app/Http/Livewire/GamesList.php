@@ -13,7 +13,7 @@ class GamesList extends Component
 
     public function render()
     {
-        $games = Game::query()->with(['homeTeam', 'awayTeam'])
+        $games = Game::query()->with(['homeTeam', 'awayTeam.group'])
             ->whereHas('homeTeam', fn (Builder $query) => $this->selectedTeam ? $query->where('id', $this->selectedTeam) : true)
             ->orWhereHas('awayTeam', fn (Builder $query) => $this->selectedTeam ? $query->where('id', $this->selectedTeam) : true)
             ->get();

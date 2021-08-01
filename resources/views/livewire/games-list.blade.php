@@ -21,6 +21,7 @@
                     <td>{{ $game->played_at->format('d-m-Y') }}</td>
                     <td>{{ $game->homeTeam->country_name }}</td>
                     <td>{{ $game->awayTeam->country_name }}</td>
+                    <td>{{ $game->awayTeam->group->name }}</td>
                 </tr>
             @endforeach
         </tbody>
